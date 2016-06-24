@@ -1,17 +1,18 @@
-var moduleForFastboot = require('ember-fastboot-test-helpers').moduleForFastboot;
+/* jshint node:true */
+var helpers = require('ember-fastboot-test-helpers');
+var test = helpers.test;
+var moduleForFastboot = helpers.moduleForFastboot;
 
 moduleForFastboot('Basic rendering');
 
-QUnit.test('it renders', function(assert) {
+test('it renders', function(assert) {
   assert.expect(15);
 
-  return this.visit('/fastboot-test').then(function(data) {
-    var statusCode = data[0];
-    var headers = data[1];
-    var document = data[2];
-
-    assert.equal(statusCode, 200, 'Request is successful');
-    assert.equal(headers["content-type"], "text/html; charset=utf-8", 'Content type is correct');
+  return this.visit('/fastboot-test').then(resp => {
+    var document = resp.document;
+    debugger;
+    assert.equal(resp.statusCode, 200, 'Request is successful');
+    assert.equal(resp.headers["content-type"], "text/html; charset=utf-8", 'Content type is correct');
     var select;
 
     // Single select without selected
@@ -38,5 +39,5 @@ QUnit.test('it renders', function(assert) {
     assert.ok(select.querySelector('.ember-power-select-trigger'), 'It contains a trigger');
     assert.equal(select.querySelectorAll('.ember-power-select-multiple-option').length, 2, 'There is 2 selected options');
     assert.ok(/two/.test(select.textContent.trim()), 'Two and six are selected');
-  }.bind(this));
+  });
 });

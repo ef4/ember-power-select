@@ -27,7 +27,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV['ember-cli-mirage'] = {
       enabled: true
-    }
+    };
   }
 
   if (environment === 'test') {
@@ -40,12 +40,20 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
+
+    // FIXME: I needed to disable this to demonstrate fastboot
+    // tests. But it needs to be on for normal tests.
+    ENV['ember-cli-mirage'] = {
+      enabled: false
+    };
+
   }
 
   if (environment === 'production') {
     ENV['ember-cli-mirage'] = {
       enabled: true
-    }
+    };
   }
 
   return ENV;

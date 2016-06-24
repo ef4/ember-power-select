@@ -41,6 +41,18 @@ module.exports = {
       }
     },
     {
+      name: 'ember-beta-fastboot',
+      bower: {
+        dependencies: {
+          'ember': 'components/ember#beta'
+        },
+        resolutions: {
+          'ember': 'beta'
+        }
+      },
+      command: 'ember test:fastboot'
+    },
+    {
       name: 'ember-canary',
       bower: {
         dependencies: {
